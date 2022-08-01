@@ -51796,6 +51796,8 @@ definitions:
         type: string
       lender:
         type: string
+  loanwithcosmos.loan.MsgRequestLoanResponse:
+    type: object
   loanwithcosmos.loan.Params:
     type: object
     description: Params defines the parameters for the module.
