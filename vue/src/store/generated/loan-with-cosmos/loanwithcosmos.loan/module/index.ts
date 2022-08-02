@@ -5,15 +5,17 @@ import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
 import { MsgRequestLoan } from "./types/loan/tx";
-import { MsgRepayLoan } from "./types/loan/tx";
 import { MsgLiquidateLoan } from "./types/loan/tx";
+import { MsgCancelLoan } from "./types/loan/tx";
+import { MsgRepayLoan } from "./types/loan/tx";
 import { MsgApproveLoan } from "./types/loan/tx";
 
 
 const types = [
   ["/loanwithcosmos.loan.MsgRequestLoan", MsgRequestLoan],
-  ["/loanwithcosmos.loan.MsgRepayLoan", MsgRepayLoan],
   ["/loanwithcosmos.loan.MsgLiquidateLoan", MsgLiquidateLoan],
+  ["/loanwithcosmos.loan.MsgCancelLoan", MsgCancelLoan],
+  ["/loanwithcosmos.loan.MsgRepayLoan", MsgRepayLoan],
   ["/loanwithcosmos.loan.MsgApproveLoan", MsgApproveLoan],
   
 ];
@@ -48,8 +50,9 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
   return {
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
     msgRequestLoan: (data: MsgRequestLoan): EncodeObject => ({ typeUrl: "/loanwithcosmos.loan.MsgRequestLoan", value: MsgRequestLoan.fromPartial( data ) }),
-    msgRepayLoan: (data: MsgRepayLoan): EncodeObject => ({ typeUrl: "/loanwithcosmos.loan.MsgRepayLoan", value: MsgRepayLoan.fromPartial( data ) }),
     msgLiquidateLoan: (data: MsgLiquidateLoan): EncodeObject => ({ typeUrl: "/loanwithcosmos.loan.MsgLiquidateLoan", value: MsgLiquidateLoan.fromPartial( data ) }),
+    msgCancelLoan: (data: MsgCancelLoan): EncodeObject => ({ typeUrl: "/loanwithcosmos.loan.MsgCancelLoan", value: MsgCancelLoan.fromPartial( data ) }),
+    msgRepayLoan: (data: MsgRepayLoan): EncodeObject => ({ typeUrl: "/loanwithcosmos.loan.MsgRepayLoan", value: MsgRepayLoan.fromPartial( data ) }),
     msgApproveLoan: (data: MsgApproveLoan): EncodeObject => ({ typeUrl: "/loanwithcosmos.loan.MsgApproveLoan", value: MsgApproveLoan.fromPartial( data ) }),
     
   };

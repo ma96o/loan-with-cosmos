@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"loan-with-cosmos/x/loan/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"loan-with-cosmos/x/loan/types"
 )
 
 func (k msgServer) LiquidateLoan(goCtx context.Context, msg *types.MsgLiquidateLoan) (*types.MsgLiquidateLoanResponse, error) {
