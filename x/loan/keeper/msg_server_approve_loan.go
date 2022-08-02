@@ -4,8 +4,8 @@ import (
 	"context"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"loan-with-cosmos/x/loan/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"loan-with-cosmos/x/loan/types"
 )
 
 func (k msgServer) ApproveLoan(goCtx context.Context, msg *types.MsgApproveLoan) (*types.MsgApproveLoanResponse, error) {
@@ -27,7 +27,6 @@ func (k msgServer) ApproveLoan(goCtx context.Context, msg *types.MsgApproveLoan)
 	if err != nil {
 		return nil, sdkerrors.Wrap(types.ErrWrongLoanState, "Cannot parse coins in loan amount")
 	}
-
 
 	k.bankKeeper.SendCoins(ctx, lender, borrower, amount)
 
