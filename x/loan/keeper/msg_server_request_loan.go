@@ -10,15 +10,14 @@ import (
 func (k msgServer) RequestLoan(goCtx context.Context, msg *types.MsgRequestLoan) (*types.MsgRequestLoanResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-
 	// Create a new Loan with the following user input
 	var loan = types.Loan{
-		Amount: msg.Amount,
-		Fee: msg.Fee,
+		Amount:     msg.Amount,
+		Fee:        msg.Fee,
 		Collateral: msg.Collateral,
-		Deadline: msg.Deadline,
-		State: "requested",
-		Borrower: msg.Creator,
+		Deadline:   msg.Deadline,
+		State:      "requested",
+		Borrower:   msg.Creator,
 	}
 
 	// TODO: collateral has to be more than the amount (+fee?)
@@ -38,7 +37,6 @@ func (k msgServer) RequestLoan(goCtx context.Context, msg *types.MsgRequestLoan)
 	if sdkError != nil {
 		return nil, sdkError
 	}
-
 
 	// Add the loan to the keeper
 	k.AppendLoan(
