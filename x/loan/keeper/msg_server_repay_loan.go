@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"loan-with-cosmos/x/loan/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"loan-with-cosmos/x/loan/types"
 )
 
 func (k msgServer) RepayLoan(goCtx context.Context, msg *types.MsgRepayLoan) (*types.MsgRepayLoanResponse, error) {
